@@ -1,0 +1,135 @@
+{% extends "convert/layout.html" %}
+{%load static%}
+{%block title%}{%endblock%}
+{% block body %}
+    <div class="container">
+        <div class="" id="convert-text">
+            <h1 class="text-center mt-3">Xchangepro Currency Converter</h1>
+            <h5 class="text-center mb-4">Check live foreign currency exchange rates</h5>
+        </div>
+        <div class="hidden" id="chart-text">
+            <h1 class="text-center mt-3">Xchangepro Currency Charts</h1>
+            <h5 class="text-center mb-4">Review historical currency rates</h5>
+        </div>
+    </div>
+    <div class="container bg-white border rounded-lg">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-light mt-1 p-3 btn-block" id="convert">
+                    <span class="mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/>
+                        </svg>
+                    </span>
+                    Convert
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn btn-light mt-1 p-3 btn-block" id="chart">
+                    <span class="mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/>
+                        </svg>
+                    </span>
+                    Charts
+                </button>
+            </div>
+        </div>
+
+        <!--convert view-->
+        <div id="convert-view">
+            <div class="row m-4">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input class="form-control input-lg" id="amount" placeholder="Enter amount">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="fromCurrency">From</label>
+                        <select class="form-control" id="fromCurrency">
+                            {%for currency in currencies%}
+                                <option value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2 d-flex justify-content-center align-items-center">
+                    <button class="btn btn-info rounded-circle center swap-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="toCurrency">To</label>
+                        <select class="form-control" id="toCurrency">
+                            {%for currency in currencies%}
+                                <option value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
+                            {%endfor%}
+                            <!-- Add more currencies as needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col m-3 d-flex justify-content-end">
+                            <button class="btn btn-primary button" id="convert-button">Convert</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="result mt-4">
+                    <h4 class="text-center" id="convert-result"></h4>
+                </div>
+            </div>
+        </div>
+        <!--end of convert view-->
+
+        <!--chart view-->
+        <div class="hidden" id="chart-view">
+            <div class="row m-4">
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <label for="from-Currency">From</label>
+                        <select class="form-control" id="from-Currency">
+                            {%for currency in currencies%}
+                                <option value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
+                            {%endfor%}
+                            <!-- Add more currencies as needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2 d-flex justify-content-center align-items-center">
+                    <button class="btn btn-info rounded-circle center swap-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <label for="to-Currency">To</label>
+                        <select class="form-control" id="to-Currency">
+                            {%for currency in currencies%}
+                                <option value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col m-3 d-flex justify-content-end">
+                            <button class="btn btn-primary button" id="chart-button">View Chart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="result mt-4">
+                    <h4 class="text-center" id="chart-result"></h4>
+                </div>
+            </div>
+        </div>
+        <!--end of chart view-->
+    </div>
+{%endblock%}
