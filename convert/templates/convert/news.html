@@ -1,0 +1,22 @@
+{% extends "convert/layout.html" %}
+{%load static%}
+{%block title%}{%endblock%}
+{% block body %}
+    <!--news section-->
+    <div class="container">
+        <h1 class="text-center mt-2">News headlines </h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            {%for new in news%}
+                <div class="col-sm-3 mt-3">
+                    <a href="{{new.url}}" target="_blank">
+                        <img class="img-thumbnail" src="{{new.urlToImage}}" alt="">
+                        <div>{{new.title}}</div>
+                    </a>
+                </div>
+            {%endfor%}
+        </div>
+    </div>
+    <!--end of news section-->
+{%endblock%}

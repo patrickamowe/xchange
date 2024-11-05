@@ -8,6 +8,7 @@ class Currency(models.Model):
         represent a country currency
 
         attributes:
+        id(AutoField): A unique value identify
         code (CharField): The three letter representation of a currency.
         name (CharField): The name of the currency.
         country (CharField): The country to which the currency belong to.

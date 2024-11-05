@@ -2,6 +2,7 @@
 {%load static%}
 {%block title%}{%endblock%}
 {% block body %}
+    <!--convert section-->
     <div class="container">
         <div class="" id="convert-text">
             <h1 class="text-center mt-3">Xchangepro Currency Converter</h1>
@@ -69,7 +70,6 @@
                             {%for currency in currencies%}
                                 <option value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
                             {%endfor%}
-                            <!-- Add more currencies as needed -->
                         </select>
                     </div>
                 </div>
@@ -97,7 +97,6 @@
                             {%for currency in currencies%}
                                 <option value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
                             {%endfor%}
-                            <!-- Add more currencies as needed -->
                         </select>
                     </div>
                 </div>
@@ -132,4 +131,23 @@
         </div>
         <!--end of chart view-->
     </div>
+    <!--end of convert section-->
+
+    <!--news section-->
+    <div class="container">
+        <h1 class="text-center mt-2">News headlines </h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            {%for new in news%}
+                <div class="col-sm-3 mt-3">
+                    <a href="{{new.url}}" target="_blank">
+                        <img class="img-thumbnail" src="{{new.urlToImage}}" alt="">
+                        <div>{{new.title}}</div>
+                    </a>
+                </div>
+            {%endfor%}
+        </div>
+    </div>
+    <!--end of news section-->
 {%endblock%}
