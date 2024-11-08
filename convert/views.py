@@ -3,7 +3,7 @@ from convert.models import Currency
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-from .functions import fetch_top_headlines, fetch_everything
+from .functions import fetch_top_headlines, fetch_everything, get_live_rate
 
 # APIs keys
 api_key = "2d153877d4d14feca1be2288de02435a"
@@ -13,16 +13,16 @@ api_key = "2d153877d4d14feca1be2288de02435a"
 
 def index(request):
     currencies = Currency.objects.all()
+    currency_rates = get_live_rate()
 
-    respond = fetch_top_headlines(api_key, "us")
-    if respond.status_code == 200:
-        data = respond.json()
-        news = data["articles"]
-        first_six_new = news[:8]
+    result = fetch_top_headlines(api_key, "us")
+    if result["status"] == "ok":
+        news = result["articles"]
+        first_eight_news = news[:8]
     else:
-        first_six_new = list()
+        first_eight_news = []
 
-    return render(request, "convert/index.html", {"currencies":currencies, "news":first_six_new})
+    return render(request, "convert/index.html", {"currencies":currencies, "news":first_eight_news, "currency_rates":currency_rates})
 
 
 def news_view(request):
@@ -52,3 +52,4 @@ def store_currency_data(request):
             return JsonResponse({'error': str(e)}, status=400)
     else:
         return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
+

@@ -75,6 +75,7 @@
                 </div>
                 <div class="container">
                     <div class="row">
+                        <div class="col m-3" id="result"></div>
                         <div class="col m-3 d-flex justify-content-end">
                             <button class="btn btn-primary button" id="convert-button">Convert</button>
                         </div>
@@ -137,17 +138,56 @@
     <div class="container">
         <h1 class="text-center mt-2">News headlines </h1>
     </div>
-    <div class="container">
+    {%if news%}
+        <div class="container">
+            <div class="row">
+                {%for new in news%}
+                    <div class="col-sm-3 mt-3">
+                        <a href="{{new.url}}" target="_blank">
+                            <img class="img-thumbnail" src="{{new.urlToImage}}" alt="">
+                            <div>{{new.title}}</div>
+                        </a>
+                    </div>
+                {%endfor%}
+            </div>
+        </div>
+    {%else%}
+        <div class="container">
+            <p class="text-center">unable to fetch news articles at this time.</p>
+        </div>
+    {%endif%}
+    <!--end of news section-->
+
+     <!--currency rates section-->
+    <div class="container currency-container">
         <div class="row">
-            {%for new in news%}
-                <div class="col-sm-3 mt-3">
-                    <a href="{{new.url}}" target="_blank">
-                        <img class="img-thumbnail" src="{{new.urlToImage}}" alt="">
-                        <div>{{new.title}}</div>
-                    </a>
+          <!-- Left Side with Currency Rates -->
+          <div class="col-6">
+            <!-- Title and Headers -->
+            <div class="text-center title">Live Rates</div>
+            <div class="row border-bottom">
+              <div class="col-6 text-center"><strong>Currency</strong></div>
+              <div class="col-6 text-center"><strong>Rate</strong></div>
+            </div>
+
+            <!-- Currency Rates Loop -->
+            {% for currency_rate in currency_rates %}
+              <div class="row rate-row border-bottom">
+                <div class="col-6 text-center">
+                  <span>{{ currency_rate.base_code }}/{{ currency_rate.target_code }}</span>
                 </div>
-            {%endfor%}
+                <div class="col-6 text-center">
+                  <span>{{ currency_rate.conversion_rate }}</span>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- Right Side (Empty or Additional Content) -->
+          <div class="col-6">
+            <!-- You can add content here, like charts or additional data -->
+          </div>
         </div>
     </div>
-    <!--end of news section-->
+     <!--end of currency rates section-->
 {%endblock%}

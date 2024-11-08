@@ -73,3 +73,21 @@ h1 {
 .hidden {
        display: none;
    }
+
+.currency-container {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 20px;
+      }
+
+.title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  }
+
+.rate-row {
+  border-top: 1px solid #ddd;
+  padding: 5px 0;
+  }
