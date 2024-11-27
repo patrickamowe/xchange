@@ -14,41 +14,65 @@
         <!-- Navigation Bar -->
         <div id="nav-bg">
             <div class="container">
-              <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand logo" href="{%url 'index'%}">
-                    <img src=" {% static 'convert/images/logo/logo.png' %}" alt="logo" width="153" height="44" />
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'news' %}">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">Available Currency</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">Graphs</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">Saved Currency</a>
-                      </li>
-                  </ul>
-                  <ul class="navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Register</a>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand logo" href="{% url 'index' %}">
+                        <img alt="logo" height="44" src="{% static 'convert/images/logo/logo.png' %}" width="153"/>
+                    </a>
+                    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'news' %}">News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Available Currency</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Graphs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Saved Currency</a>
+                            </li>
+                        </ul>
+
+                        {% if user.is_authenticated %}
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle d-flex align-items-center" data-toggle="dropdown" href="#" id="userDropdown" role="button">
+                                      <span class="border bg-secondary p-2 rounded-circle mr-2">
+                                        <svg class="bi bi-person" fill="white" height="16" viewBox="0 0 16 16"
+                                             width="16"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM4.832 10.668C4.154 11.346 4 12.086 4 12.33V12s0 1 4 1 4-1 4-1v-.33c0-.244-.154-.984-.832-1.662C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332z"/>
+                                        </svg>
+                                      </span>
+                                    {{ user.username }}
+                                </a>
+                                <div aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Profile</a>
+                                    <a class="dropdown-item" href="#">Settings</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                        {% else %}
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-outline-primary mr-2" href="{% url 'login' %}">Sign In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary" href="{% url 'register' %}">Register</a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </nav>
             </div>
         </div>
         <!-- end of Navigation Bar -->

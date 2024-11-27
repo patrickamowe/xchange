@@ -1,0 +1,40 @@
+{% extends "convert/layout.html" %}
+{%load static%}
+{%block title%}Login{%endblock%}
+{%block body%}
+
+    <div class="container d-flex align-items-center justify-content-center mt-3">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-6 col-12">
+                <div class="card shadow p-4 border">
+                    <div>
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {%endfor%}
+                        </ul>
+                        {%endif%}
+                    </div>
+                    <h3 class="text-center mb-4">Login</h3>
+                    <form action="{%url 'login'%}" method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="loginUsername" class="form-label">Username</label>
+                            <input name="username" class="form-control" id="loginUsername" placeholder="Enter your username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <span>Don't have an account? <a class="auth-link" href="{%url 'register' %}">Register</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%endblock%}

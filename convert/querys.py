@@ -60,8 +60,28 @@ def fetch_everything(api_key, query):
         "apiKey": api_key
     }
 
-    respond = requests.get(base_url, params=params)
-    return respond
+    try:
+        # Make the API request
+        response = requests.get(base_url, params=params)
+        response.raise_for_status()  # Raises an HTTPError if the response was unsuccessful
+
+        # Parse the JSON response
+        data = response.json()
+
+        # Check if the response contains articles
+        if "articles" in data:
+            return {
+                "status": data.get("status", "error"),
+                "totalResults": data.get("totalResults", 0),
+                "articles": data["articles"]
+            }
+        else:
+            return {"status": "error", "message": "No articles found"}
+
+    except requests.exceptions.RequestException as e:
+        # Handle any HTTP errors or other issues
+        print(f"An error occurred: {e}")
+        return {"status": "error", "message": str(e)}
 
 
 def live_rates(api_key, base_code, target_code):
