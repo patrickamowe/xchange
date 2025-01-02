@@ -30,14 +30,16 @@
                                 <a class="nav-link" href="#">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Available Currency</a>
+                                <a class="nav-link" href="{% url 'available_currency'%}">Available Currency</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Graphs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Saved Currency</a>
-                            </li>
+                            {%if user.is_authenticated%}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Graphs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'saved_currency'%}">Saved Currency</a>
+                                </li>
+                            {%endif%}
                         </ul>
 
                         {% if user.is_authenticated %}

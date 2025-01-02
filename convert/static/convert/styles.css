@@ -74,12 +74,7 @@ h1 {
        display: none;
    }
 
-.currency-container {
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 5px;
-      margin-top: 20px;
-      }
+
 
 .title {
   font-weight: bold;
@@ -95,12 +90,4 @@ h1 {
 .nav-link:hover {
     color: #0056b3 !important;
     text-decoration: underline;
-}
-
-.navbar-brand img {
-    max-height: 44px;
-}
-
-.navbar-nav .btn {
-    margin: 0 5px;
 }

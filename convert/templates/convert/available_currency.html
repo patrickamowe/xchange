@@ -1,0 +1,22 @@
+{% extends "convert/layout.html" %}
+{%load static%}
+{%block title%}Available Currency{%endblock%}
+{%block body%}
+    <div class="container">
+        <div class="m-2">
+            <h3 class="text-center">Supported Currency</h3>
+        </div>
+        <div class="row">
+            <div class="col-5"><strong>Country</strong></div>
+            <div class="col-4"><strong>Currency Name</strong></div>
+            <div class="col-3"><strong>Currency Code</strong></div>
+        </div>
+        {%for currency in currencies%}
+            <div class="row border-bottom">
+                <div class="col-5"><span>{{currency.country}}</span></div>
+                <div class="col-5"><span>{{currency.name}}</span></div>
+                <div class="col-2"><span>{{currency.code}}</span></div>
+            </div>
+        {%endfor%}
+    </div>
+{%endblock%}

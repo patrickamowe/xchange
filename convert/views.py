@@ -1,8 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
-from convert.models import Currency, User
+from django.shortcuts import render, redirect, get_object_or_404
+from convert.models import Currency, User, Wishlist, WishlistItem
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -56,12 +56,12 @@ def login_view(request):
 
 def register_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        first_name = request.POST['first-name']
-        last_name = request.POST['last-name']
-        email = request.POST['email']
-        password = request.POST['password']
-        confirmation_password = request.POST['confirmation-password']
+        username = request.POST.get('username')
+        first_name = request.POST.get('first-name')
+        last_name = request.POST.get('last-name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirmation_password = request.POST.get('confirmation-password')
 
         if password == confirmation_password:
             if User.objects.filter(username=username).exists():
@@ -85,21 +85,60 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
+def available_currency_view(request):
+    currencies = Currency.objects.all()
+
+    return render(request, "convert/available_currency.html", {"currencies": currencies})
+
+@login_required
+def saved_currency_view(request):
+    wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+    if not created:
+        wishlist_items = WishlistItem.objects.filter(wishlist=wishlist)
+    else:
+        wishlist_items = []
+
+    return render(request, "convert/saved_currency.html", {"wishlist_items": wishlist_items})
+
 
 # API functions
-@csrf_exempt
-def store_currency_data(request):
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            CurrencyData.objects.create(
-                base_currency=data['base_currency'],
-                target_currency=data['target_currency'],
-                exchange_rate=data['exchange_rate']
-            )
-            return JsonResponse({'message': 'Data stored successfully'}, status=201)
-        except Exception as e:
-            return JsonResponse({'error': str(e)}, status=400)
-    else:
-        return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
+
+@login_required
+def add_wishlist(request, base_currency_code, quote_currency_code):
+    try:
+        wishlist, created_wishlist = Wishlist.objects.get_or_create(user=request.user)
+        base_currency = Currency.objects.get(code=base_currency_code)
+        quote_currency = Currency.objects.get(code=quote_currency_code)
+        wishlist_item, created_wishlist_item = WishlistItem.objects.get_or_create(wishlist=wishlist, base_currency=base_currency, quote_currency=quote_currency)
+
+        if created_wishlist or created_wishlist_item:
+            response_data = {'status':'success', 'message': 'currency pair successfully added to wishlist'}
+            return JsonResponse(response_data, status=201)
+        else:
+            response_data = {'status':'info', 'message': 'currency pair already in wishlist'}
+            return JsonResponse(response_data, status=200)
+    except Currency.DoesNotExist:
+        response_data = {'status':'fail', 'message':'currency not found'}
+        return JsonResponse(response_data, status=404)
+    except Exception as e:
+        response_data = {'status':'fail', 'message':str(e)}
+        return JsonResponse(response_data, status=500)
+
+
+@login_required
+def remove_wishlist(request, base_currency_code, quote_currency_code):
+    wishlist = get_object_or_404(Wishlist, user=request.user)
+    base_currency = get_object_or_404(Currency, code=base_currency_code)
+    quote_currency = get_object_or_404(Currency, code=quote_currency_code)
+    try:
+        wishlist_item = WishlistItem.objects.get(wishlist=wishlist, base_currency=base_currency, quote_currency=quote_currency)
+        wishlist_item.delete()
+        response_data = {'status':'success', 'message':'currency pair deleted from wishlist successfully'}
+        return JsonResponse(response_data, status=200)
+    except WishlistItem.DoesNotExist:
+        response_data = {'status': 'fail', 'message':'currency pair not found'}
+        return JsonResponse(response_data, status=404)
+    except Exception as e:
+        response_data = {'status':'fail', 'message':str(e)}
+        return JsonResponse(response_data, status=500)
 

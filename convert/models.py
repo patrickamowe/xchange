@@ -25,3 +25,20 @@ class Currency(models.Model):
         return f"{self.code}: {self.name}"
 
 
+class Wishlist(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+
+
+class WishlistItem(models.Model):
+    wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE, related_name="wishlists")
+    base_currency = models.ForeignKey(Currency, on_delete=models.CASCADE, related_name="base_currency")
+    quote_currency = models.ForeignKey(Currency, on_delete=models.CASCADE, related_name="quote_currency")
+
+    class Meta:
+        unique_together = ('wishlist', 'base_currency', 'quote_currency')  # Ensure uniqueness of wishlist items
+
+    def __str__(self):
+        return f"{self.base_currency.code} : {self.base_currency.name} - {self.quote_currency.code} : {self.quote_currency.name}"

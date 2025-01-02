@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    document.getElementById('fromCurrency').value = 'USD';
+    document.getElementById('toCurrency').value = 'NGN';
+    document.getElementById('from-Currency').value = 'USD';
+    document.getElementById('to-Currency').value = 'NGN';
+
     const convert = document.getElementById('convert');
     const chart = document.getElementById('chart');
     let convertView = document.getElementById('convert-view');
@@ -20,14 +26,36 @@ document.addEventListener('DOMContentLoaded', function() {
         chartText.classList.remove('hidden');
     });
 
+    document.getElementById('convert-swap-btn').addEventListener('click', function() {
+        // Get the select elements
+        let fromCurrency = document.getElementById('fromCurrency');
+        let toCurrency = document.getElementById('toCurrency');
+
+        // Swap the values
+        let tempValue = fromCurrency.value;
+        fromCurrency.value = toCurrency.value;
+        toCurrency.value = tempValue;
+    });
+
+    document.getElementById('chart-swap-btn').addEventListener('click', function() {
+        // Get the select elements
+        let fromCurrency = document.getElementById('from-Currency');
+        let toCurrency = document.getElementById('to-Currency');
+
+        // Swap the values
+        let tempValue = fromCurrency.value;
+        fromCurrency.value = toCurrency.value;
+        toCurrency.value = tempValue;
+    });
+
     async function convertCurrency() {
         // Show loading indicator
         document.getElementById("result").textContent = "Loading...";
 
         // Get user input values
         const amount = document.getElementById('amount').value;
-        const fromCurrency = document.getElementById('fromCurrency').value.toUpperCase();
-        const toCurrency = document.getElementById('toCurrency').value.toUpperCase();
+        const fromCurrency = document.getElementById('fromCurrency').value;
+        const toCurrency = document.getElementById('toCurrency').value;
 
         // Check if input values are valid
         if (!amount || !fromCurrency || !toCurrency) {
@@ -58,5 +86,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.getElementById('convert-button').addEventListener('click', convertCurrency);
+
+     document.getElementById('add-wishlist').addEventListener('click', async function() {
+        const baseCurrency = document.getElementById('fromCurrency').value;
+        const quoteCurrency = document.getElementById('toCurrency').value;
+        const url = `http://127.0.0.1:8000/add_currency/${baseCurrency}/${quoteCurrency}/`
+        try{
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log(data)
+        } catch (error){
+            console.error("Error adding currency pair:", error);
+        }
+    });
+
+    document.getElementById('remove-wishlist').addEventListener('click', async function() {
+        const basedCurrency =
+        const quoteCurrency =
+    });
 
 });

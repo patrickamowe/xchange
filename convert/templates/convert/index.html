@@ -43,7 +43,7 @@
                 <div class="col-sm-2">
                     <div class="form-group">
                         <label for="amount">Amount</label>
-                        <input class="form-control input-lg" id="amount" placeholder="Enter amount">
+                        <input class="form-control input-lg" id="amount" placeholder="Enter amount" value="1">
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                    <button class="btn btn-info rounded-circle center swap-btn">
+                    <button class="btn btn-info rounded-circle center swap-btn" id="convert-swap-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
                         </svg>
@@ -74,15 +74,21 @@
                     </div>
                 </div>
                 <div class="container">
+                    {%if user.is_authenticated%}
+                        <div class="m-1">
+                            <span id="add-wishlist">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                </svg>
+                            </span>
+                        </div>
+                    {%endif%}
                     <div class="row">
-                        <div class="col m-3" id="result"></div>
+                        <div class="col m-1" id="result"></div>
                         <div class="col m-3 d-flex justify-content-end">
                             <button class="btn btn-primary button" id="convert-button">Convert</button>
                         </div>
                     </div>
-                </div>
-                <div class="result mt-4">
-                    <h4 class="text-center" id="convert-result"></h4>
                 </div>
             </div>
         </div>
@@ -102,7 +108,7 @@
                     </div>
                 </div>
                 <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                    <button class="btn btn-info rounded-circle center swap-btn">
+                    <button class="btn btn-info rounded-circle center swap-btn" id="chart-swap-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
                         </svg>
@@ -159,20 +165,20 @@
     <!--end of news section-->
 
      <!--currency rates section-->
-    <div class="container currency-container">
+    <div class="container mt-3 p-2 bg-white border rounded-lg">
         <div class="row">
           <!-- Left Side with Currency Rates -->
           <div class="col-6">
             <!-- Title and Headers -->
             <div class="text-center title">Live Rates</div>
-            <div class="row border-bottom">
+            <div class="row">
               <div class="col-6 text-center"><strong>Currency</strong></div>
               <div class="col-6 text-center"><strong>Rate</strong></div>
             </div>
 
             <!-- Currency Rates Loop -->
             {% for currency_rate in currency_rates %}
-              <div class="row rate-row border-bottom">
+              <div class="row rate-row border-top m-1">
                 <div class="col-6 text-center">
                   <span>{{ currency_rate.base_code }}/{{ currency_rate.target_code }}</span>
                 </div>
