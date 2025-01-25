@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('fromCurrency').value = 'USD';
     document.getElementById('toCurrency').value = 'NGN';
@@ -12,21 +12,21 @@ document.addEventListener('DOMContentLoaded', function() {
     let convertText = document.getElementById('convert-text');
     let chartText = document.getElementById('chart-text');
 
-    convert.addEventListener('click', function() {
+    convert.addEventListener('click', () => {
         convertView.classList.remove('hidden');
         chartView.classList.add('hidden');
         convertText.classList.remove('hidden');
         chartText.classList.add('hidden');
     });
 
-    chart.addEventListener('click', function() {
+    chart.addEventListener('click', () => {
         chartView.classList.remove('hidden');
         convertView.classList.add('hidden');
         convertText.classList.add('hidden');
         chartText.classList.remove('hidden');
     });
 
-    document.getElementById('convert-swap-btn').addEventListener('click', function() {
+    document.getElementById('convert-swap-btn').addEventListener('click', () => {
         // Get the select elements
         let fromCurrency = document.getElementById('fromCurrency');
         let toCurrency = document.getElementById('toCurrency');
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         toCurrency.value = tempValue;
     });
 
-    document.getElementById('chart-swap-btn').addEventListener('click', function() {
+    document.getElementById('chart-swap-btn').addEventListener('click', () => {
         // Get the select elements
         let fromCurrency = document.getElementById('from-Currency');
         let toCurrency = document.getElementById('to-Currency');
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('convert-button').addEventListener('click', convertCurrency);
 
-     document.getElementById('add-wishlist').addEventListener('click', async function() {
+     document.getElementById('add-wishlist').addEventListener('click', async () => {
         const baseCurrency = document.getElementById('fromCurrency').value;
         const quoteCurrency = document.getElementById('toCurrency').value;
         const url = `http://127.0.0.1:8000/add_currency/${baseCurrency}/${quoteCurrency}/`
@@ -100,9 +100,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.getElementById('remove-wishlist').addEventListener('click', async function() {
-        const basedCurrency =
-        const quoteCurrency =
-    });
 
 });

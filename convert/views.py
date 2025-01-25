@@ -6,20 +6,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-import json
-from .querys import fetch_top_headlines, fetch_everything, get_live_rate
+from .querys import fetchNewsHeadline, fetchNews, pairsLiveRate
+from xchange.settings import NEWS_API, EXCHANGE_API, PAIRS
 
-# APIs keys
-api_key = "2d153877d4d14feca1be2288de02435a"
-
-# Create your views here.
 
 
 def index(request):
     currencies = Currency.objects.all()
-    currency_rates = get_live_rate()
+    currency_rates = pairsLiveRate(EXCHANGE_API, PAIRS)
 
-    respond = fetch_top_headlines(api_key, "us")
+    respond = fetchNewsHeadline(NEWS_API, "us")
     if respond["status"] == "ok":
         news = respond["articles"]
         first_eight_news = news[:8]
@@ -31,7 +27,7 @@ def index(request):
 
 def news_view(request):
 
-    respond = fetch_everything(api_key, "currency")
+    respond = fetchNews(NEWS_API, "currency")
     if respond["status"] == "ok":
         news = respond["articles"]
         first_eight_news = news[:8]
@@ -101,8 +97,7 @@ def saved_currency_view(request):
     return render(request, "convert/saved_currency.html", {"wishlist_items": wishlist_items})
 
 
-# API functions
-
+# API views
 @login_required
 def add_wishlist(request, base_currency_code, quote_currency_code):
     try:

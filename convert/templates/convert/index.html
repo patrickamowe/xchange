@@ -51,7 +51,7 @@
                         <label for="fromCurrency">From</label>
                         <select class="form-control" id="fromCurrency">
                             {%for currency in currencies%}
-                                <option value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
+                                <option value="{{currency.code}}">{{currency}}</option>
                             {%endfor%}
                         </select>
                     </div>
@@ -68,7 +68,7 @@
                         <label for="toCurrency">To</label>
                         <select class="form-control" id="toCurrency">
                             {%for currency in currencies%}
-                                <option value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
+                                <option value="{{currency.code}}">{{currency}}</option>
                             {%endfor%}
                         </select>
                     </div>
@@ -102,7 +102,7 @@
                         <label for="from-Currency">From</label>
                         <select class="form-control" id="from-Currency">
                             {%for currency in currencies%}
-                                <option value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
+                                <option value="{{currency.code}}">{{currency}}</option>
                             {%endfor%}
                         </select>
                     </div>
@@ -119,7 +119,7 @@
                         <label for="to-Currency">To</label>
                         <select class="form-control" id="to-Currency">
                             {%for currency in currencies%}
-                                <option value="{{currency.code}}">{{currency.code}} - {{currency.name}}</option>
+                                <option value="{{currency.code}}">{{currency}}</option>
                             {%endfor%}
                         </select>
                     </div>

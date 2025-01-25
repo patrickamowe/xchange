@@ -122,3 +122,10 @@ STATICFILES_DIRS = [BASE_DIR / "convert" / "static"]
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+NEWS_API = "2d153877d4d14feca1be2288de02435a"
+EXCHANGE_API = "7fe0597fce4c9eadaa610d6b"
+PAIRS = [{"base_code": "USD", "target_code": "NGN"},
+             {"base_code": "EUR", "target_code": "NGN"},
+             {"base_code": "GBP", "target_code": "NGN"},
+             {"base_code": "GHS", "target_code": "NGN"}]
