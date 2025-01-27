@@ -30,10 +30,6 @@ body {
  margin-right: 8rem;
 }
 
-body {
-    background-color: #f8f9fa;
-}
-
 .card {
     border: none;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);

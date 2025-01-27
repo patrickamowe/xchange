@@ -7,13 +7,13 @@ from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .querys import fetchNewsHeadline, fetchNews, pairsLiveRate
-from xchange.settings import NEWS_API, EXCHANGE_API, PAIRS
+from xchange.settings import NEWS_API, EXCHANGE_API, LIVE_PAIRS, POPULAR_PAIRS
 
 
 
 def index(request):
     currencies = Currency.objects.all()
-    currency_rates = pairsLiveRate(EXCHANGE_API, PAIRS)
+    currency_rates = pairsLiveRate(EXCHANGE_API, LIVE_PAIRS)
 
     respond = fetchNewsHeadline(NEWS_API, "us")
     if respond["status"] == "ok":
@@ -22,7 +22,7 @@ def index(request):
     else:
         first_eight_news = []
 
-    return render(request, "convert/index.html", {"currencies":currencies, "news":first_eight_news, "currency_rates":currency_rates})
+    return render(request, "convert/index.html", {"currencies":currencies, "news":first_eight_news, "currency_rates":currency_rates, "popular_pairs":POPULAR_PAIRS})
 
 
 def news_view(request):
