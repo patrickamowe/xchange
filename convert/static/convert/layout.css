@@ -1,0 +1,36 @@
+body {
+    background-color: #f8f9fa;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.2rem;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1.1rem;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffc107;
+}
+
+.navbar-toggler-icon {
+  background-color: #fff;
+}
+
+.navbar-collapse {
+  justify-content: space-between;
+}
+
+.navbar-brand {
+ margin-right: 8rem;
+}
+
+.nav-link:hover {
+    color: #0056b3 !important;
+    text-decoration: underline;
+}

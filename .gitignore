@@ -1,7 +1,23 @@
-.venv
-.idea
-.idea/
+# -------------------------
+# Virtual environment
+# -------------------------
 .venv/
-__pycache__
+.venv
+
+# -------------------------
+# IDE & Editor settings
+# -------------------------
+.idea/
+.idea
+.vscode/
+
+# -------------------------
+# Python cache files
+# -------------------------
+__pycache__/
+
+# -------------------------
+# Database files (local use only)
+# -------------------------
 db.sqlite3
 db_backup.sqlite3

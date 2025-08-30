@@ -1,0 +1,12 @@
+.result {
+    display: none;
+}
+
+.swap-btn {
+    width: 4rem;
+    height: 4rem;
+}
+
+.hidden {
+       display: none;
+}
