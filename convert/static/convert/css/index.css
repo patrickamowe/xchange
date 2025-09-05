@@ -69,13 +69,19 @@ h1 {
 #result {
   font-size: 1rem;
   text-align: center;
-  border: 0.1rem snow #343a40;
-  border-radius: 0.3rem;
   padding: 0.1rem;
   width: 100%;
   box-sizing: border-box;
-  color: #212529;
-  background-color: #f8f9fa;
+  color: #3BB273;
+}
+
+#chart-result {
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.1rem;
+  width: 100%;
+  box-sizing: border-box;
+  color: #3BB273;
 }
 
 .news-card {

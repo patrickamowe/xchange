@@ -11,11 +11,11 @@ from decouple import config
 from convert.config.constants import POPULAR_PAIRS, LIVE_PAIRS
 
 def index(request):
-    currencies = Currency.objects.all()
-    
-    currency_rates = pairsLiveRate(config('EXCHANGE_API'), LIVE_PAIRS)
 
+    currencies = Currency.objects.all()
+    currency_rates = pairsLiveRate(config('EXCHANGE_API'), LIVE_PAIRS)
     respond = fetchNewsHeadline(config('NEWS_API'), "us")
+
     if respond["status"] == "ok":
         news = respond["articles"]
         first_eight_news = news[:8]
@@ -90,7 +90,11 @@ def available_currency_view(request):
 def saved_currency_view(request):
     wishlist, created = Wishlist.objects.get_or_create(user=request.user)
     if not created:
-        wishlist_items = WishlistItem.objects.filter(wishlist=wishlist)
+        items = WishlistItem.objects.filter(wishlist=wishlist)
+        currency_pairs = [{"base_code": item.base_currency.code, "target_code": item.quote_currency.code} for item in items]
+        currency_rates = pairsLiveRate(config('EXCHANGE_API'), currency_pairs)
+        wishlist_items = list(zip(items, currency_rates))
+        print(wishlist_items)
     else:
         wishlist_items = []
 

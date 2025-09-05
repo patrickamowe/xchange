@@ -147,31 +147,6 @@
 </div>
 <!--end of convert section-->
 
-<!--news section-->
-<div class="container">
-    <h3 class="text-center mt-2">News headlines </h1>
-</div>
-{%if news%}
-<div class="container">
-    <div class="row">
-        {%for new in news%}
-        <div class="col-sm-3 mt-3 news-card">
-            <a href="{{new.url}}" target="_blank">
-                <img alt="" class="img-thumbnail news-image" src="{{new.urlToImage}}">
-                <div class="news-title">{{new.title}}</div>
-            </a>
-        </div>
-        {%endfor%}
-    </div>
-    <div class="read-div"> <a href="{% url 'news' %}" class="read-text">Read More...</a></div>
-</div>
-{%else%}
-<div class="container">
-    <p class="text-center">unable to fetch news articles at this time.</p>
-</div>
-{%endif%}
-<!--end of news section-->
-
 <!--currency rates section-->
 <div class="container mt-3 p-2 bg-white border rounded-lg">
     <div class="row">
@@ -211,5 +186,32 @@
             </div>
         </div>
     </div>
-    <!--end of currency rates section-->
-    {%endblock%}
+</div>
+<!--end of currency rates section-->
+
+<!--news section-->
+<div class="container">
+    <h3 class="text-center mt-2">News headlines </h1>
+</div>
+{%if news%}
+<div class="container">
+    <div class="row">
+        {%for new in news%}
+        <div class="col-sm-3 mt-3 news-card">
+            <a href="{{new.url}}" target="_blank">
+                <img alt="" class="img-thumbnail news-image" src="{{new.urlToImage}}">
+                <div class="news-title">{{new.title}}</div>
+            </a>
+        </div>
+        {%endfor%}
+    </div>
+    <div class="read-div"> <a href="{% url 'news' %}" class="read-text">Read More...</a></div>
+</div>
+{%else%}
+<div class="container">
+    <p class="text-center">unable to fetch news articles at this time.</p>
+</div>
+{%endif%}
+<!--end of news section-->
+
+{%endblock%}

@@ -89,7 +89,7 @@ def liveRate(api_key, base_code, target_code):
         dict: A dictionary with the status, conversion rate, and error message if any.
     """
 
-    url = f"https://v6.exchangerate-api.com/v6/pair/{base_code}/{target_code}"
+    url = f"https://v6.exchangerate-api.com/v6/{api_key}/pair/{base_code}/{target_code}"
     try:
         response = requests.get(url)
         response.raise_for_status()  # Raises an HTTPError if the response was unsuccessful
