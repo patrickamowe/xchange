@@ -6,20 +6,20 @@ def fetchNewsHeadline(api_key, country):
 
     Parameters:
         api_key (str): Your News API key.
-        country (str): The country code (e.g., 'us' for the United States).
+        country (str): The country code (e.g., 'us' for United States).
 
     Returns:
         dict: A dictionary with the status, total results, and list of articles.
     """
 
-    base_url = "https://newsapi.org/v2/top-headlines"
+    url = "https://newsapi.org/v2/top-headlines"
     params = {
         "country": country,
         "apiKey": api_key
     }
 
     try:
-        response = requests.get(base_url, params=params)
+        response = requests.get(url, params=params)
         response.raise_for_status()  # Raises an HTTPError if the response was unsuccessful
         data = response.json()
 
@@ -50,14 +50,14 @@ def fetchNews(api_key, query):
             respond: A dictionary with the status, total results, and list of articles.
     """
     # Define the base URL and parameters
-    base_url = "https://newsapi.org/v2/everything"
+    url = f"https://newsapi.org/v2/everything"
     params = {
         "q": query,
         "apiKey": api_key
     }
 
     try:
-        response = requests.get(base_url, params=params)
+        response = requests.get(url, params=params)
         response.raise_for_status()  # Raises an HTTPError if the response was unsuccessful
         data = response.json()
 
@@ -89,7 +89,7 @@ def liveRate(api_key, base_code, target_code):
         dict: A dictionary with the status, conversion rate, and error message if any.
     """
 
-    url = f"https://v6.exchangerate-api.com/v6/{api_key}/pair/{base_code}/{target_code}"
+    url = f"https://v6.exchangerate-api.com/v6/pair/{base_code}/{target_code}"
     try:
         response = requests.get(url)
         response.raise_for_status()  # Raises an HTTPError if the response was unsuccessful
@@ -112,6 +112,17 @@ def liveRate(api_key, base_code, target_code):
 
 
 def pairsLiveRate(api_key, pairs):
+
+    """
+    Fetches live conversion rates for multiple currency pairs using ExchangeRate API.
+
+    Parameters:
+        api_key (str): Your ExchangeRate API key.
+        pairs (list): A list of dictionaries, each containing 'base_code' and 'target_code'.
+    Returns:
+        list: A list of dictionaries with conversion rates or error messages for each pair.
+    """
+
     currency_rates = []
 
     for pair in pairs:

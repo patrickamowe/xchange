@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%97ax1_jopo^rpzf9cgchkb=b+_d(o%_&_d#_191a(xf0t_3_y'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG_MODE', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -123,22 +124,3 @@ STATICFILES_DIRS = [BASE_DIR / "convert" / "static"]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-NEWS_API = "2d153877d4d14feca1be2288de02435a"
-
-EXCHANGE_API = "7fe0597fce4c9eadaa610d6b"
-
-LIVE_PAIRS = [{"base_code": "USD", "target_code": "NGN"},
-             {"base_code": "EUR", "target_code": "NGN"},
-             {"base_code": "GBP", "target_code": "NGN"},
-             {"base_code": "GHS", "target_code": "NGN"}]
-
-POPULAR_PAIRS = [{"base_code": "USD", "target_code": "NGN"},
-             {"base_code": "EUR", "target_code": "NGN"},
-             {"base_code": "GBP", "target_code": "NGN"},
-             {"base_code": "GHS", "target_code": "NGN"},
-             {"base_code": "ZAR", "target_code": "NGN"},
-             {"base_code": "JPY", "target_code": "NGN"},
-             {"base_code": "JMD", "target_code": "NGN"},
-             {"base_code": "EGP", "target_code": "NGN"},
-             {"base_code": "AUD", "target_code": "NGN"},
-             {"base_code": "AED", "target_code": "NGN"}]

@@ -1,0 +1,30 @@
+.search-bar-div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: #f9f9f9;
+}
+
+.search-bar {
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #3bb273;
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.search-input:focus {
+    border-color: #3bb273;
+    outline: none;
+}
+
+
+

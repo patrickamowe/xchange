@@ -1,12 +1,144 @@
-.result {
-    display: none;
+.hidden {
+  display: none;
+}
+
+h3 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #212529;
+}
+
+
+h1 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #6c757d;
+}
+
+
+.toggle-btn {
+  padding: 0.1rem  !important;
+  margin: 0.1rem  !important;
+}
+.toggle-btn .btn {
+  width: 100%;
+  height: 100%;
+  background-color: #3BB273;
+  color:#1e3a8a;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.toggle-btn .btn:hover {
+  background-color: #017433;
+  color: #ffffff;
+}
+
+.input-field {
+  font-size: 1rem;
+  text-align: center;
+  border: 0.1rem snow #343a40;
+  border-radius: 0.3rem;
+  padding: 0.1rem;
+  width: 100%;
+  box-sizing: border-box;
+  color: #212529;
+  background-color: #f8f9fa;
 }
 
 .swap-btn {
-    width: 4rem;
-    height: 4rem;
+  background-color: #1e3a8a;
+  color:#3BB273;
 }
 
-.hidden {
-       display: none;
+.swap-btn:hover {
+  background-color: #3350a3;
+  color: #ffffff;
 }
+
+.submit-btn {
+  background-color: #1e3a8a;
+  color:#3BB273;
+  font-size: 1.2rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+}
+.submit-btn:hover {
+  background-color: #3350a3;
+  color: #ffffff;
+}
+
+#result {
+  font-size: 1rem;
+  text-align: center;
+  border: 0.1rem snow #343a40;
+  border-radius: 0.3rem;
+  padding: 0.1rem;
+  width: 100%;
+  box-sizing: border-box;
+  color: #212529;
+  background-color: #f8f9fa;
+}
+
+.news-card {
+  border: 0.1rem solid #343a40;
+  border-radius: 0.2rem;
+  border-color: #3BB273;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.news-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.news-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0.3rem;
+}
+
+.news-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  color: #212529;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.read-div {
+  text-align: right;
+  margin-top: 1rem;
+}
+.read-text {
+  font-size: 1.2rem;
+  color: #3BB273;
+  cursor: pointer;
+  text-decoration: none;
+}
+.read-text:hover {
+  color: #017433;
+  text-decoration: none;
+}
+
+.rate-row {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  cursor: pointer;
+
+}
+.rate-row:hover {
+  background-color: #e2e6ea;
+}
+

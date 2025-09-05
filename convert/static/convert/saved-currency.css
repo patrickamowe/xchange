@@ -1,6 +1,38 @@
+/* Styles for the saved currency list */
+.border-btm {
+    border-bottom: 0.01rem solid #3bb273;
+    padding: 10px 0;
+}
+
+.base-currency{
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.quote-currency{
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+.price{
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+
 .delete-icon {
     cursor: pointer;
-    color: red;
+    color: rgb(204, 81, 81);
     font-size: 1.2rem;
     margin-left: 10px;
+}
+
+.empty-text {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
 }

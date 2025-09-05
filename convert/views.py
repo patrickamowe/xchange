@@ -6,16 +6,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from .querys import fetchNewsHeadline, fetchNews, pairsLiveRate
-from xchange.settings import NEWS_API, EXCHANGE_API, LIVE_PAIRS, POPULAR_PAIRS
-
-
+from convert.services import fetchNewsHeadline, fetchNews, pairsLiveRate
+from decouple import config
+from convert.config.constants import POPULAR_PAIRS, LIVE_PAIRS
 
 def index(request):
     currencies = Currency.objects.all()
-    currency_rates = pairsLiveRate(EXCHANGE_API, LIVE_PAIRS)
+    
+    currency_rates = pairsLiveRate(config('EXCHANGE_API'), LIVE_PAIRS)
 
-    respond = fetchNewsHeadline(NEWS_API, "us")
+    respond = fetchNewsHeadline(config('NEWS_API'), "us")
     if respond["status"] == "ok":
         news = respond["articles"]
         first_eight_news = news[:8]
@@ -27,7 +27,7 @@ def index(request):
 
 def news_view(request):
 
-    respond = fetchNews(NEWS_API, "currency")
+    respond = fetchNews(config('NEWS_API'), "currency")
     if respond["status"] == "ok":
         news = respond["articles"]
         first_eight_news = news[:8]

@@ -18,7 +18,7 @@ export function setupWishlistHandlers() {
     }
 
     // Remove wishlist buttons
-    const removeBtns = document.querySelectorAll(".remove-wishlist");
+    const removeBtns = document.querySelectorAll(".delete-icon");
     removeBtns.forEach((btn) => {
         btn.addEventListener("click", async () => {
             const base = btn.getAttribute("data-value-base");

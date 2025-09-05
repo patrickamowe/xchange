@@ -5,18 +5,18 @@
 <!--convert section-->
 <div class="container">
     <div class="" id="convert-text">
-        <h1 class="text-center mt-3">Xchangepro Currency Converter</h1>
-        <h5 class="text-center mb-4">Check live foreign currency exchange rates</h5>
+        <h3 class="text-center mt-3">Xchangepro Currency Converter</h1>
+        <h6 class="text-center mb-4">Check live foreign currency exchange rates</h5>
     </div>
     <div class="hidden" id="chart-text">
-        <h1 class="text-center mt-3">Xchangepro Currency Charts</h1>
-        <h5 class="text-center mb-4">Review historical currency rates</h5>
+        <h3 class="text-center mt-3">Xchangepro Currency Charts</h1>
+        <h6 class="text-center mb-4">Review historical currency rates</h5>
     </div>
 </div>
 <div class="container bg-white border rounded-lg">
     <div class="row">
-        <div class="col">
-            <button class="btn btn-light mt-1 p-3 btn-block" id="convert">
+        <div class="col toggle-btn">
+            <button class="btn mt-1 p-3 btn-block" id="convert">
                     <span class="mr-2">
                         <svg class="bi bi-arrow-left-right" fill="currentColor" height="16" viewBox="0 0 16 16"
                              width="16" xmlns="http://www.w3.org/2000/svg">
@@ -27,8 +27,8 @@
                 Convert
             </button>
         </div>
-        <div class="col">
-            <button class="btn btn-light mt-1 p-3 btn-block" id="chart">
+        <div class="col toggle-btn">
+            <button class="btn mt-1 p-3 btn-block" id="chart">
                     <span class="mr-2">
                         <svg class="bi bi-graph-up" fill="currentColor" height="16" viewBox="0 0 16 16"
                              width="16" xmlns="http://www.w3.org/2000/svg">
@@ -47,13 +47,13 @@
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="amount">Amount</label>
-                    <input class="form-control input-lg" id="amount" placeholder="Enter amount" value="1">
+                    <input class="form-control input-lg input-field" id="amount" placeholder="Enter amount" value="1">
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="fromCurrency">From</label>
-                    <select class="form-control" id="fromCurrency">
+                    <select class="form-control input-field" id="fromCurrency">
                         {%for currency in currencies%}
                         <option value="{{currency.code}}">{{currency}}</option>
                         {%endfor%}
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                <button class="btn btn-info rounded-circle center swap-btn" id="convert-swap-btn">
+                <button class="btn rounded-circle center swap-btn" id="convert-swap-btn">
                     <svg class="bi bi-arrow-left-right" fill="currentColor" height="24" viewBox="0 0 16 16"
                          width="24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"
@@ -72,7 +72,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="toCurrency">To</label>
-                    <select class="form-control" id="toCurrency">
+                    <select class="form-control input-field" id="toCurrency">
                         {%for currency in currencies%}
                         <option value="{{currency.code}}">{{currency}}</option>
                         {%endfor%}
@@ -93,7 +93,7 @@
                 <div class="row">
                     <div class="col m-1" id="result"></div>
                     <div class="col m-3 d-flex justify-content-end">
-                        <button class="btn btn-primary button" id="convert-button">Convert</button>
+                        <button class="btn submit-btn" id="convert-button">Convert</button>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
             <div class="col-sm-5">
                 <div class="form-group">
                     <label for="from-Currency">From</label>
-                    <select class="form-control" id="from-Currency">
+                    <select class="form-control input-field" id="from-Currency">
                         {%for currency in currencies%}
                         <option value="{{currency.code}}">{{currency}}</option>
                         {%endfor%}
@@ -115,7 +115,7 @@
                 </div>
             </div>
             <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                <button class="btn btn-info rounded-circle center swap-btn" id="chart-swap-btn">
+                <button class="btn rounded-circle center swap-btn" id="chart-swap-btn">
                     <svg class="bi bi-arrow-left-right" fill="currentColor" height="24" viewBox="0 0 16 16"
                          width="24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"
@@ -126,7 +126,7 @@
             <div class="col-sm-5">
                 <div class="form-group">
                     <label for="to-Currency">To</label>
-                    <select class="form-control" id="to-Currency">
+                    <select class="form-control input-field" id="to-Currency">
                         {%for currency in currencies%}
                         <option value="{{currency.code}}">{{currency}}</option>
                         {%endfor%}
@@ -137,7 +137,7 @@
                 <div class="row">
                     <div class="col m-1" id="chart-result"></div>
                     <div class="col m-3 d-flex justify-content-end">
-                        <button class="btn btn-primary button" id="chart-button">View Chart</button>
+                        <button class="btn submit-btn" id="chart-button">View Chart</button>
                     </div>
                 </div>
             </div>
@@ -149,20 +149,21 @@
 
 <!--news section-->
 <div class="container">
-    <h1 class="text-center mt-2">News headlines </h1>
+    <h3 class="text-center mt-2">News headlines </h1>
 </div>
 {%if news%}
 <div class="container">
     <div class="row">
         {%for new in news%}
-        <div class="col-sm-3 mt-3">
+        <div class="col-sm-3 mt-3 news-card">
             <a href="{{new.url}}" target="_blank">
-                <img alt="" class="img-thumbnail" src="{{new.urlToImage}}">
-                <div>{{new.title}}</div>
+                <img alt="" class="img-thumbnail news-image" src="{{new.urlToImage}}">
+                <div class="news-title">{{new.title}}</div>
             </a>
         </div>
         {%endfor%}
     </div>
+    <div class="read-div"> <a href="{% url 'news' %}" class="read-text">Read More...</a></div>
 </div>
 {%else%}
 <div class="container">
@@ -203,7 +204,7 @@
             <div class="text-center title">Popular Conversions</div>
             <div class="row justify-content-center">
                 {%for popular_pair in popular_pairs%}
-                <div class="col-5 text-center border rounded-lg m-1 p-1">
+                <div class="col-5 text-center border rounded-lg m-1 p-1 rate-row">
                     <span>{{ popular_pair.base_code }}/{{ popular_pair.target_code }}</span>
                 </div>
                 {%endfor%}

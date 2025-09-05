@@ -12,7 +12,7 @@
 </head>
 <body>
 <!-- Navigation Bar -->
-<div id="nav-bg">
+<div id="nav-bg sticky" class="sticky-top shadow-sm border-bottom">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand logo" href="{% url 'index' %}">
@@ -44,19 +44,18 @@
                 </ul>
 
                 {% if user.is_authenticated %}
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ml-auto align-items-center">
                     <li class="nav-item dropdown">
                         <a aria-expanded="false" aria-haspopup="true"
-                           class="nav-link dropdown-toggle d-flex align-items-center" data-toggle="dropdown" href="#"
+                           class="nav-link d-flex align-items-center" data-toggle="dropdown" href="#"
                            id="userDropdown" role="button">
-                                      <span class="border bg-secondary p-2 rounded-circle mr-2">
+                                      <span class="border bg-secondary p-2 mr-2" id="userIcon">
                                         <svg class="bi bi-person" fill="white" height="16" viewBox="0 0 16 16"
                                              width="16"
                                              xmlns="http://www.w3.org/2000/svg">
                                           <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM4.832 10.668C4.154 11.346 4 12.086 4 12.33V12s0 1 4 1 4-1 4-1v-.33c0-.244-.154-.984-.832-1.662C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332z"/>
                                         </svg>
                                       </span>
-                            {{ user.username }}
                         </a>
                         <div aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="#">Profile</a>

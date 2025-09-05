@@ -4,20 +4,30 @@
 {% block body %}
     <!--news section-->
     <div class="container">
-        <h1 class="text-center mt-2">News headlines </h1>
+        <div class="search-bar-div">
+            <form class="search-bar" action="#" method="GET">
+                {% csrf_token %}
+                <input class="search-input" type="text" name="query" placeholder="Search news..." value="{{request.GET.query}}">
+            </form>
+            
+        </div>
+    </div>
+    <div class="container">
+        <h3 class="text-center mt-2">News headlines </h3>
     </div>
     {%if  news%}
         <div class="container">
             <div class="row">
                 {%for new in news%}
-                    <div class="col-sm-3 mt-3">
+                    <div class="col-sm-3 mt-3 news-card">
                         <a href="{{new.url}}" target="_blank">
-                            <img class="img-thumbnail" src="{{new.urlToImage}}" alt="">
-                            <div>{{new.title}}</div>
+                            <img class="img-thumbnail news-image" src="{{new.urlToImage}}" alt="">
+                            <div class="news-title">{{new.title}}</div>
                         </a>
                     </div>
                 {%endfor%}
             </div>
+            <div class="read-div"><a class="read-text">Read More...</a></div>
         </div>
     {%else%}
         <div class="container">

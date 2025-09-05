@@ -7,15 +7,15 @@
             <h3 class="text-center">Supported Currency</h3>
         </div>
         <div class="row">
-            <div class="col-5"><strong>Country</strong></div>
-            <div class="col-4"><strong>Currency Name</strong></div>
-            <div class="col-3"><strong>Currency Code</strong></div>
+            <div class="col-5 "><strong class="currency-title">Country</strong></div>
+            <div class="col-4"><strong class="currency-title">Currency Name</strong></div>
+            <div class="col-3"><strong class="currency-title">Currency Code</strong></div>
         </div>
         {%for currency in currencies%}
-            <div class="row border-bottom">
-                <div class="col-5"><span>{{currency.country}}</span></div>
-                <div class="col-5"><span>{{currency.name}}</span></div>
-                <div class="col-2"><span>{{currency.code}}</span></div>
+            <div class="row border-btm">
+                <div class="col-5"><span class="country">{{currency.country}}</span></div>
+                <div class="col-5"><span class="country-name">{{currency.name}}</span></div>
+                <div class="col-2"><span class="country-code">{{currency.code}}</span></div>
             </div>
         {%endfor%}
     </div>
