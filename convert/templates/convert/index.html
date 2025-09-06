@@ -161,7 +161,7 @@
 
             <!-- Currency Rates Loop -->
             {% for currency_rate in currency_rates %}
-            <div class="row rate-row border-top m-1">
+            <div class="row rate-row border-top m-1" data-base="{{ currency_rate.base_code }}" data-target="{{ currency_rate.target_code }}">
                 <div class="col-6 text-center">
                     <span>{{ currency_rate.base_code }}/{{ currency_rate.target_code }}</span>
                 </div>
@@ -179,7 +179,7 @@
             <div class="text-center title">Popular Conversions</div>
             <div class="row justify-content-center">
                 {%for popular_pair in popular_pairs%}
-                <div class="col-5 text-center border rounded-lg m-1 p-1 rate-row">
+                <div class="col-5 text-center border rounded-lg m-1 p-1 rate-row" data-base="{{ popular_pair.base_code }}" data-target="{{ popular_pair.target_code }}">
                     <span>{{ popular_pair.base_code }}/{{ popular_pair.target_code }}</span>
                 </div>
                 {%endfor%}

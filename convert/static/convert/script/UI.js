@@ -75,4 +75,6 @@ export function setupUIHandlers() {
     document.getElementById("chart-button").addEventListener("click", () => {
         document.getElementById("chart-result").textContent = "This feature is Coming Soon...";
     });
+
+    
 }

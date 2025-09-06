@@ -94,7 +94,6 @@ def saved_currency_view(request):
         currency_pairs = [{"base_code": item.base_currency.code, "target_code": item.quote_currency.code} for item in items]
         currency_rates = pairsLiveRate(config('EXCHANGE_API'), currency_pairs)
         wishlist_items = list(zip(items, currency_rates))
-        print(wishlist_items)
     else:
         wishlist_items = []
 
