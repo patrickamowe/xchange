@@ -5,20 +5,18 @@
 }
 
 .base-currency{
-    font-weight: bold;
     font-size: 1.2rem;
-    color: #333;
+    color: #1e3a8a;
 }
 
 .quote-currency{
-    font-weight: bold;
     font-size: 1.2rem;
-    color: #333;
+    color: #1e3a8a;
 }
 .price{
     font-weight: bold;
     font-size: 1.2rem;
-    color: #333;
+    color: #1e3a8a;
 }
 
 

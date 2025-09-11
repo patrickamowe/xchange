@@ -4,13 +4,24 @@
 
 h3 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #212529;
+  color: #3BB273;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  text-align: center;
+  font-weight: bold;
 }
 
-
-h1 {
+h6 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #6c757d;
+  color: #1e3a8a;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  text-align: center;
 }
 
 

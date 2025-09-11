@@ -9,6 +9,8 @@ urlpatterns = [
     path("register", views.register_view, name="register"),
     path("available_currency", views.available_currency_view, name="available_currency"),
     path("saved_currency", views.saved_currency_view, name="saved_currency"),
+    path("about", views.about_view, name="about"),
+    path("profile", views.profile_view, name="profile"),
 
 
     # API route

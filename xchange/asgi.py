@@ -1,5 +1,5 @@
 """
-ASGI config for xchange project.
+ASGI constants for xchange project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

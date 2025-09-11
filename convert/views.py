@@ -6,9 +6,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from convert.services import fetchNewsHeadline, fetchNews, pairsLiveRate
+from convert.services.service import fetchNewsHeadline, fetchNews, pairsLiveRate
 from decouple import config
-from convert.config.constants import POPULAR_PAIRS, LIVE_PAIRS
+from convert.constants.constant import POPULAR_PAIRS, LIVE_PAIRS
 
 def index(request):
 
@@ -22,7 +22,7 @@ def index(request):
     else:
         first_eight_news = []
 
-    return render(request, "convert/index.html", {"currencies":currencies, "news":first_eight_news, "currency_rates":currency_rates, "popular_pairs":POPULAR_PAIRS})
+    return render(request, "index.html", {"currencies":currencies, "news":first_eight_news, "currency_rates":currency_rates, "popular_pairs":POPULAR_PAIRS})
 
 
 def news_view(request):
@@ -33,7 +33,7 @@ def news_view(request):
         first_eight_news = news[:8]
     else:
         first_eight_news = []
-    return render(request, "convert/news.html", {"news":first_eight_news})
+    return render(request, "news.html", {"news":first_eight_news})
 
 def login_view(request):
     if request.method == 'POST':
@@ -48,7 +48,7 @@ def login_view(request):
         else:
             messages.error(request, 'Invalid credentials.')
 
-    return render(request, "convert/login.html")
+    return render(request, "login.html")
 
 def register_view(request):
     if request.method == 'POST':
@@ -75,7 +75,7 @@ def register_view(request):
         else:
             messages.error(request, 'Passwords do not match.')
 
-    return render(request, "convert/register.html")
+    return render(request, "register.html")
 
 def logout_view(request):
     logout(request)
@@ -84,7 +84,7 @@ def logout_view(request):
 def available_currency_view(request):
     currencies = Currency.objects.all()
 
-    return render(request, "convert/available_currency.html", {"currencies": currencies})
+    return render(request, "available_currency.html", {"currencies": currencies})
 
 @login_required
 def saved_currency_view(request):
@@ -97,7 +97,15 @@ def saved_currency_view(request):
     else:
         wishlist_items = []
 
-    return render(request, "convert/saved_currency.html", {"wishlist_items": wishlist_items})
+    return render(request, "saved_currency.html", {"wishlist_items": wishlist_items})
+
+def about_view(request):
+    return render(request, "about.html")
+
+@login_required
+def profile_view(request):
+    user = request.user
+    return render(request, "profile.html", {"user": user})
 
 
 # API views

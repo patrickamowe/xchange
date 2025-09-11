@@ -1,4 +1,4 @@
-{% extends "convert/layout.html" %}
+{% extends "layout.html" %}
 {%load static%}
 {%block title%}Saved Currency{%endblock%}
 {%block body%}
@@ -14,8 +14,8 @@
             </div>
             {%for item in wishlist_items%}
                 <div class="row border-btm">
-                    <div class="col-4"><span class="base_currency">{{item.0.base_currency}}</span></div>
-                    <div class="col-4"><span class="quote_currency">{{item.0.quote_currency}}</span></div>
+                    <div class="col-4"><span class="base-currency">{{item.0.base_currency}}</span></div>
+                    <div class="col-4"><span class="quote-currency">{{item.0.quote_currency}}</span></div>
                     <div class="col-2"><span class="price">{{item.1.conversion_rate}}</span></div>
                     <div class="col-2">
                         <span class="delete-icon" data-value-base="{{item.1.base_code}}" data-value-quote="{{item.1.target_code}}">

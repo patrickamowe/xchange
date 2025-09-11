@@ -1,5 +1,5 @@
 """
-WSGI config for xchange project.
+WSGI constants for xchange project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

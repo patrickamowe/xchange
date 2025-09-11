@@ -1,0 +1,65 @@
+
+{%extends "layout.html" %}
+{%load static%}
+{%block title%}Profile - Xchange{%endblock%}
+{%block body%}
+    <div class="container mt-5">
+        <div class="card shadow-lg rounded-3">
+            <div class="card-body text-center">
+                <!-- Profile Picture -->
+                <img src="{% static 'images/profile/profile.jpg' %}"  
+                    class="rounded-circle mb-3" height="50" width="50">
+
+                <!-- Username and Email -->
+                <h4 class="mb-1 user-name">{{ user.username }}</h4>
+                <p class="text-muted user-email">{{ user.email }}</p>
+            
+                <!-- Quick Actions -->
+                <div class="d-flex justify-content-center gap-3 my-3">
+                    <a href="/edit-profile" class="edit-btn">Edit Profile</a>
+                    <a href="/change-password" class="change-password">Change Password</a>
+                    <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+                </div>
+            </div>
+
+            <!-- Details Section -->
+            <div class="card-body border-top">
+                <h5>Profile Details</h5>
+                <ul class="list-unstyled">
+                    <li class="profile-item"><strong>Name:</strong> {{ user.first_name }} {{user.last_name}}</li>
+                    <li class="profile-item"><strong>Email:</strong> {{ user.email }}</li>
+                    <li class="profile-item"><strong>Joined:</strong> {{ user.date_joined }}</li>
+                </ul>
+            </div>
+
+            <!-- Saved Conversions -->
+            <div class="card-body border-top">
+                <h5>Saved Conversions</h5>
+                <ul class="list-group">
+                    {% for pair in saved_pairs %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ pair.base_code }} → {{ pair.target_code }}
+                    <a href="#" class="btn btn-sm btn-outline-danger">Remove</a>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item">No saved conversions yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card-body border-top">
+                <h5>Recent Activity</h5>
+                <ul class="list-group">
+                    {% for activity in recent_activity %}
+                    <li class="list-group-item">
+                    {{ activity.base_code }} → {{ activity.target_code }} @ {{ activity.rate }}
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item">No recent conversions.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{%endblock%}

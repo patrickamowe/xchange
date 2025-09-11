@@ -1,0 +1,20 @@
+.edit-btn{
+  padding: 0.5rem;
+  background-color: aqua;
+  color: black;
+}
+
+.change-password {
+  padding: 0.5rem;
+  background-color: aquamarine;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  color: black;
+}
+
+.logout-btn {
+  padding: 0.5rem;
+  background-color: brown;
+  color: black;
+}
+
