@@ -11,3 +11,124 @@
     background-color: #0056b3;
     border-color: #004085;
 }
+
+.signin-btn {
+    background-color: transparent;
+    border: 2px solid #007bff;
+    color: #007bff;
+    width: 8rem;
+    height: 3.2rem;
+    font-size: 1.2rem;
+    border-radius: 0.8rem;
+    text-align: center;
+    line-height: 2.8rem;
+    display: inline-block;
+    margin: 0.1rem 0.2rem;
+}
+
+.signin-btn:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.register-btn {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #ffffff;
+    width: 8rem;
+    height: 3.2rem;
+    font-size: 1.2rem;
+    border-radius: 0.8rem;
+    text-align: center;
+    line-height: 2.8rem;
+    display: inline-block;
+    margin: 0.1rem 0.2rem;
+}
+
+.register-btn:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: #ffffff;
+}
+
+.edit-btn{
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+    width: 8rem;
+    height: 3.2rem;
+    font-size: 1.2rem;
+    border-radius: 0.8rem;
+    text-align: center;
+    line-height: 2.8rem;
+    display: inline-block;
+    margin: 0.1rem 0.2rem;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+    color: #212529;
+}
+
+.change-pw-btn{
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: #ffffff;
+    width: 12rem;
+    height: 3.2rem;
+    font-size: 1.2rem;
+    border-radius: 0.8rem;
+    text-align: center;
+    line-height: 2.8rem;
+    display: inline-block;
+    margin: 0.1rem 0.2rem;
+}
+
+.change-pw-btn:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+    color: #ffffff;
+}
+
+.logout-btn {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #ffffff;
+    width: 8rem;
+    height: 3.2rem;
+    font-size: 1.2rem;
+    border-radius: 0.8rem;
+    text-align: center;
+    line-height: 2.8rem;
+    display: inline-block;
+    margin: 0.1rem 0.2rem;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: #ffffff;
+}
+
+.swap-btn {
+  background-color: #1e3a8a;
+  color:#3BB273;
+}
+
+.swap-btn:hover {
+  background-color: #3350a3;
+  color: #ffffff;
+}
+
+.submit-btn {
+  background-color: #1e3a8a;
+  color:#3BB273;
+  font-size: 1.2rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+}
+.submit-btn:hover {
+  background-color: #3350a3;
+  color: #ffffff;
+}

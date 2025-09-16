@@ -3,16 +3,16 @@ const BACKEND_URL = "http://127.0.0.1:8000";
 const API_KEY = "7fe0597fce4c9eadaa610d6b";
 const FX_API_BASE = "https://v6.exchangerate-api.com/v6";
 
-// Add currency pair to wishlist
-export async function addCurrencyPair(base, quote) {
-    const url = `${BACKEND_URL}/add_currency/${base}/${quote}/`;
+// Add conversion to saved conversions
+export async function addConversion(base, quote) {
+    const url = `${BACKEND_URL}/add_conversion/${base}/${quote}/`;
     const response = await fetch(url);
     return response.json();
 }
 
-// Remove currency pair from wishlist
-export async function removeCurrencyPair(base, quote) {
-    const url = `${BACKEND_URL}/remove_currency/${base}/${quote}/`;
+// Remove conversion from saved conversions
+export async function removeConversion(base, quote) {
+    const url = `${BACKEND_URL}/remove_conversion/${base}/${quote}/`;
     const response = await fetch(url);
     return response.json();
 }

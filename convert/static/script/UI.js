@@ -69,6 +69,9 @@ export function setupUIHandlers() {
             console.error("Error fetching conversion:", error);
             document.getElementById("result").textContent = "An error occurred.";
         }
+
+        //Make add to wishlist button visible
+        document.getElementById("add-conversion").classList.remove("hidden");
     });
 
     // Chart button (temporary)

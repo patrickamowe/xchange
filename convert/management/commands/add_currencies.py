@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from convert.models import Currency
-from convert.constants.constants import CURRENCY_STRINGS as strings
+from convert.constants.constant import CURRENCY_STRINGS as strings
 
 def creating_currency_list(input_string):
     # Initialize an empty list to hold the dictionaries

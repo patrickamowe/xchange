@@ -55,28 +55,6 @@ h6 {
   background-color: #f8f9fa;
 }
 
-.swap-btn {
-  background-color: #1e3a8a;
-  color:#3BB273;
-}
-
-.swap-btn:hover {
-  background-color: #3350a3;
-  color: #ffffff;
-}
-
-.submit-btn {
-  background-color: #1e3a8a;
-  color:#3BB273;
-  font-size: 1.2rem;
-  padding: 0.4rem 0.8rem;
-  border: none;
-}
-.submit-btn:hover {
-  background-color: #3350a3;
-  color: #ffffff;
-}
-
 #result {
   font-size: 1rem;
   text-align: center;
@@ -159,3 +137,20 @@ h6 {
   background-color: #e2e6ea;
 }
 
+.add-icon {
+  font-size: 1.5rem;
+  color: #3BB273;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border: 0.1rem solid #3BB273;
+  border-radius: 50%;
+}
+
+.add-icon:hover {
+  background-color: #017433;
+  color: #ffffff;
+  text-decoration: none;
+  border: 0.1rem solid #017433;
+}

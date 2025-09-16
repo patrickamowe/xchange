@@ -1,21 +1,21 @@
 {% extends "layout.html" %}
 {%load static%}
-{%block title%}Saved Currency{%endblock%}
+{%block title%}Saved Conversion{%endblock%}
 {%block body%}
     <div class="container">
         <div class="m-2">
             <h3 class="text-center">Saved Currency Pair</h3>
         </div>
-        {%if wishlist_items%}
+        {%if saved_conversions%}
             <div class="row">
                 <div class="col-4"><strong>Base Currency</strong></div>
                 <div class="col-4"><strong>Quote Currency</strong></div>
                 <div class="col-2"><strong>Rate</strong></div>
             </div>
-            {%for item in wishlist_items%}
+            {%for item in saved_conversions%}
                 <div class="row border-btm">
-                    <div class="col-4"><span class="base-currency">{{item.0.base_currency}}</span></div>
-                    <div class="col-4"><span class="quote-currency">{{item.0.quote_currency}}</span></div>
+                    <div class="col-4"><span class="base-currency">{{item.0.base}}</span></div>
+                    <div class="col-4"><span class="quote-currency">{{item.0.quote}}</span></div>
                     <div class="col-2"><span class="price">{{item.1.conversion_rate}}</span></div>
                     <div class="col-2">
                         <span class="delete-icon" data-value-base="{{item.1.base_code}}" data-value-quote="{{item.1.target_code}}">

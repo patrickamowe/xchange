@@ -1,16 +1,16 @@
-// wishlist.js
-import { addCurrencyPair, removeCurrencyPair } from "./api.js";
+import { addConversion, removeConversion } from "./api.js";
 
-export function setupWishlistHandlers() {
-    // Add wishlist button
-    const addBtn = document.getElementById("add-wishlist");
+export function savedConversionHandler() {
+    // Add conversion button
+    const addBtn = document.getElementById("add-conversion");
     if (addBtn) {
         addBtn.addEventListener("click", async () => {
             const base = document.getElementById("fromCurrency").value;
             const quote = document.getElementById("toCurrency").value;
 
             try {
-                const data = await addCurrencyPair(base, quote);
+                const data = await addConversion(base, quote);
+                window.alert("Currency pair added to saved conversions!");
             } catch (error) {
                 console.error("Error adding currency pair:", error);
             }
@@ -25,7 +25,7 @@ export function setupWishlistHandlers() {
             const quote = btn.getAttribute("data-value-quote");
 
             try {
-                const data = await removeCurrencyPair(base, quote);
+                const data = await removeConversion(base, quote);
                 location.reload();
             } catch (error) {
                 console.error("Error removing currency pair:", error);

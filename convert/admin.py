@@ -1,5 +1,5 @@
 from django.contrib import admin
-from convert.models import Currency, User, Wishlist, WishlistItem
+from convert.models import Currency, User, SavedConversion
 
 # Register your models here.
 
@@ -11,10 +11,6 @@ class CurrencyAdmin(admin.ModelAdmin):
 class UserAdmin(admin.ModelAdmin):
     list_display = ('id', 'username', 'email', 'password')
 
-@admin.register(Wishlist)
+@admin.register(SavedConversion)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user')
-
-@admin.register(WishlistItem)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'wishlist', 'base_currency', 'quote_currency')
+    list_display = ('id', 'user', 'base', 'quote')
