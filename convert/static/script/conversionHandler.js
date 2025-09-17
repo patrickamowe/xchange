@@ -1,6 +1,6 @@
 import { addConversion, removeConversion } from "./api.js";
 
-export function savedConversionHandler() {
+export function conversionHandler() {
     // Add conversion button
     const addBtn = document.getElementById("add-conversion");
     if (addBtn) {

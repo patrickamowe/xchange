@@ -65,3 +65,15 @@
     align-items: center;
 
 }
+
+.clear-text {
+    color: #3BB273;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.clear-text:hover {
+    color: #017433;
+    text-decoration: underline;
+}

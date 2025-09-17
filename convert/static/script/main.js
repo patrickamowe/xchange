@@ -1,13 +1,13 @@
 // main.js
-import { setupUIHandlers } from "./UI.js";
-import { savedConversionHandler } from "./conversion.js";
-import { setupPopularConversionHandlers } from "./popular-conversion.js";
+import { UIHandler } from "./UI.js";
+import { popularConversionHandler } from "./popularConversionHandler.js";
 import { hiddenNews } from "./news.js";
+import { recentConversionHandler } from "./recentConversionHandler.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-    savedConversionHandler();
-    setupPopularConversionHandlers();
-    setupUIHandlers();
+
+document.addEventListener("DOMContentLoaded", () => { 
+    popularConversionHandler();
+    UIHandler();
+    recentConversionHandler();
     hiddenNews();
 });

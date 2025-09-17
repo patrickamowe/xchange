@@ -1,7 +1,8 @@
 // ui.js
 import { convertCurrency } from "./api.js";
+import { saveConversion } from "./recentConversion.js";
 
-export function setupUIHandlers() {
+export function UIHandler() {
     // Default values
     document.getElementById("fromCurrency").value = "USD";
     document.getElementById("toCurrency").value = "NGN";
@@ -61,7 +62,10 @@ export function setupUIHandlers() {
             const data = await convertCurrency(amount, from, to);
             if (data.result === "success") {
                 document.getElementById("result").textContent =
-                    `${amount} ${from} = ${data.conversion_result.toFixed(2)} ${to} (Rate: ${data.conversion_rate})`;
+                    `${amount} ${from} = ${data.conversion_result.toFixed(2)} ${to}`;
+                
+                // Save to recent conversion
+                saveConversion(from, to);
             } else {
                 document.getElementById("result").textContent = "Conversion failed.";
             }
@@ -70,7 +74,7 @@ export function setupUIHandlers() {
             document.getElementById("result").textContent = "An error occurred.";
         }
 
-        //Make add to wishlist button visible
+        //Make add conversion icon visible
         document.getElementById("add-conversion").classList.remove("hidden");
     });
 

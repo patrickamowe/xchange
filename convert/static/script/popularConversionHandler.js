@@ -1,7 +1,7 @@
 // Clickable currency rates
 import { convertCurrency } from "./api.js";
 
-export function setupPopularConversionHandlers() {
+export function popularConversionHandler() {
     const convertView = document.getElementById("convert-view");
     const chartView = document.getElementById("chart-view");
     const convertText = document.getElementById("convert-text");
@@ -42,6 +42,9 @@ export function setupPopularConversionHandlers() {
                 console.error("Error during conversion:", error);
                 document.getElementById("result").textContent = "Error during conversion.";
             }
+
+            //Make add conversion icon visible
+            document.getElementById("add-conversion").classList.remove("hidden");
         });
     });
 }
