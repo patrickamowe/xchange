@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
-from convert.models import Currency, User, SavedConversion
+from convert.models import Currency, User, SavedConversion, RecentConversion
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -85,7 +85,7 @@ def available_currency_view(request):
 
     return render(request, "available_currency.html", {"currencies": currencies})
 
-@login_required
+@login_required(login_url='login')
 def saved_conversion_view(request):
     items = SavedConversion.objects.filter(user=request.user)
     currency_pairs = [{"base_code": item.base.code, "target_code": item.quote.code} for item in items]
@@ -97,12 +97,13 @@ def saved_conversion_view(request):
 def about_view(request):
     return render(request, "about.html")
 
-@login_required
+@login_required(login_url='login')
 def profile_view(request):
     user = request.user
     saved_pairs = SavedConversion.objects.filter(user=user)
+    recent_pairs = RecentConversion.objects.filter(user=user)
 
-    return render(request, "profile.html", {"user": user, "saved_pairs": saved_pairs})
+    return render(request, "profile.html", {"user": user, "saved_pairs": saved_pairs, "recent_pairs": recent_pairs})
 
 
 # API views
@@ -139,6 +140,44 @@ def remove_conversion(request, base_code, quote_code):
         return JsonResponse(response_data, status=200)
     except SavedConversion.DoesNotExist:
         response_data = {'status': 'fail', 'message':'currency pair not found'}
+        return JsonResponse(response_data, status=404)
+    except Exception as e:
+        response_data = {'status':'fail', 'message':str(e)}
+        return JsonResponse(response_data, status=500)
+    
+@login_required
+def clear_recent_conversions(request):
+    try:
+        RecentConversion.objects.filter(user=request.user).delete()
+        response_data = {'status':'success', 'message':'all recent conversions cleared successfully'}
+        return JsonResponse(response_data, status=200)
+    except Exception as e:
+        response_data = {'status':'fail', 'message':str(e)}
+        return JsonResponse(response_data, status=500)
+    
+@login_required
+def add_recent_conversion(request, base_code, quote_code):
+
+    try:
+        base_currency = Currency.objects.get(code=base_code)
+        quote_currency = Currency.objects.get(code=quote_code)
+        _, created_recent_conversion = RecentConversion.objects.get_or_create(user=request.user, base=base_currency, quote=quote_currency)
+
+        if created_recent_conversion:
+
+            # Limit to 5 recent conversions
+            recent_conversions = RecentConversion.objects.filter(user=request.user)
+            if recent_conversions.count() > 5:
+                to_delete = recent_conversions[5:]
+                to_delete.delete()
+
+            response_data = {'status':'success', 'message': 'currency pair successfully added to recent conversion'}
+            return JsonResponse(response_data, status=201)
+        else:
+            response_data = {'status':'info', 'message': 'currency pair already in recent conversion'}
+            return JsonResponse(response_data, status=200)
+    except Currency.DoesNotExist:
+        response_data = {'status':'fail', 'message':'currency not found'}
         return JsonResponse(response_data, status=404)
     except Exception as e:
         response_data = {'status':'fail', 'message':str(e)}

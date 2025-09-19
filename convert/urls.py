@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -13,8 +15,14 @@ urlpatterns = [
     path("profile", views.profile_view, name="profile"),
 
 
-    # API route
+    # API endpoints
     path("add_conversion/<str:base_code>/<str:quote_code>/", views.add_conversion, name="add_conversion"),
     path("remove_conversion/<str:base_code>/<str:quote_code>/", views.remove_conversion, name="remove_conversion"),
+    path("add_recent_conversion/<str:base_code>/<str:quote_code>/", views.add_recent_conversion, name="add_recent_conversion"),
+    path("clear_recent_conversions/", views.clear_recent_conversions, name="clear_recent_conversions"),
 
 ]
+
+# Serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

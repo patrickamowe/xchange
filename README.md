@@ -13,6 +13,8 @@ Xchange is a currency convertor website application that uses an exchange API to
 - **News:** Displays the latest financial and cryptocurrency-related news.
 - **Login & Register Page:** Allows users to create accounts and login to access additional features.
 - **Available Currency Page:** Lists all supported currencies and their exchange rates.
+- **Profile Page:** Lists users informations and logout button.
+- **Saved conversion Page:** Lists all conversions save by th user.
 
 ## Installation
 ### Prerequisites

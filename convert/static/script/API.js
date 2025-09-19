@@ -23,3 +23,18 @@ export async function convertCurrency(amount, from, to) {
     const response = await fetch(url);
     return response.json();
 }
+
+
+// Add conversion to recent conversions
+export async function addRecentConversion(base, quote) {
+    const url = `${BACKEND_URL}/add_recent_conversion/${base}/${quote}/`;
+    const response = await fetch(url);
+    return response.json();
+}
+
+// Clear all recent conversions
+export async function clearRecentConversions() {
+    const url = `${BACKEND_URL}/clear_recent_conversions/`;
+    const response = await fetch(url);
+    return response.json();
+}   

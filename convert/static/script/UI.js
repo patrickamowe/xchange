@@ -1,6 +1,6 @@
 // ui.js
-import { convertCurrency } from "./api.js";
-import { saveConversion } from "./recentConversion.js";
+import { convertCurrency, addRecentConversion } from "./api.js";
+
 
 export function UIHandler() {
     // Default values
@@ -65,7 +65,8 @@ export function UIHandler() {
                     `${amount} ${from} = ${data.conversion_result.toFixed(2)} ${to}`;
                 
                 // Save to recent conversion
-                saveConversion(from, to);
+                await addRecentConversion(from, to);
+                
             } else {
                 document.getElementById("result").textContent = "Conversion failed.";
             }

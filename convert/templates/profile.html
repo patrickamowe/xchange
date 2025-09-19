@@ -1,13 +1,20 @@
 
 {%extends "layout.html" %}
 {%load static%}
-{%block title%}Profile - Xchange{%endblock%}
+{%block title%} Profile - Xchange {%endblock%}
 {%block body%}
     <div class="container mt-5">
         <div class="card shadow-lg rounded-3">
             <div class="card-body text-center">
                 <!-- Profile Picture -->
-                <img src="{% static 'images/profile/profile.jpg' %}"  class="profile-pic" >
+                 {%if user.profile_pic%}
+                    <img src="{{user.profile_pic}}"  class="profile-pic" >
+                {%else%}
+                    <svg class="bi bi-person ms-2 profile-pic" width="100" height="100" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM4.832 10.668C4.154 11.346 4 12.086 4 12.33V12s0 1 4 1 4-1 4-1v-.33c0-.244-.154-.984-.832-1.662C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332z"/>
+                    </svg>
+                {%endif%}
+                <!-- End Profile Picture -->
 
                 <!-- Username and Email -->
                 <h4 class="mb-1 user-name">{{ user.username }}</h4>
@@ -50,13 +57,23 @@
             <div class="card-body border-top">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h5 class="d-inline">Recent Activity</h5>
-                    <div class="d-inline clear-text" id="clear-recent-activity">Clear all</div>
+                    <div class="d-inline clear-text" id="clear-recent">Clear all</div>
                 </div>
                     
-                <ul class="list-group" id="recent-activity-list">
-                    <!-- Recent activities will be populated here via JavaScript -->
+                <ul class="list-group">
+                    {% for pair in recent_pairs %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ pair.base.code }} → {{ pair.quote.code }}
+                            <span class="text-muted">{{ pair.timestamp|date:"M d, Y H:i" }}</span>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No recent activity yet.</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
     </div>
 {%endblock%}
+{% block script %}
+    <script type="module" src="{% static 'script/profile.js'%}"></script>
+{% endblock %}

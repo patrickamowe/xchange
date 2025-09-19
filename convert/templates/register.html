@@ -1,54 +1,51 @@
 {% extends "layout.html" %}
 {%load static%}
-{%block title%}Register{%endblock%}
+{%block title%} Register - Xchange {%endblock%}
 {%block body%}
     <div class="container d-flex align-items-center justify-content-center mt-3">
-        <div class="row justify-content-center w-100">
-            <div class="col-md-6 col-12">
-                <div class="card shadow p-4 border">
-                     <div>
-                        {% if messages %}
-                        <ul class="messages">
-                            {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                            {%endfor%}
-                        </ul>
-                        {%endif%}
-                    </div>
-                    <h2 class="text-center">Register</h2>
-                    <form action="{%url 'register'%}" method="POST">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label class="form-label" for="registerFirstName">First Name</label>
-                            <input class="form-control" name="first-name" id="registerFirstName" placeholder="Enter your first name" required type="text">
+        
+        <div class="message-card shadow p-4 border">
+                <div class="message-div">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                            {{ message }}
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="registerLastName">Last Name</label>
-                            <input class="form-control" name="last-name" id="registerLastName" placeholder="Enter your last name" required type="text">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="registerUsername">Username</label>
-                            <input class="form-control" name="username" id="registerUsername" placeholder="Enter your username" required type="text">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="registerEmail">Email address</label>
-                            <input class="form-control" name="email" id="registerEmail" placeholder="Enter your email" required type="email">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="registerPassword">Password</label>
-                            <input class="form-control" name="password" id="registerPassword" placeholder="Enter your password" required type="password">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="registerConfirmPassword">Confirm Password</label>
-                            <input class="form-control" name="confirmation-password" id="registerConfirmPassword" placeholder="Confirm your password"
-                                   required type="password">
-                        </div>
-                        <button class="btn btn-primary w-100" type="submit">Register</button>
-                    </form>
-                    <div class="text-center mt-3">
-                        <span>Already have an account? <a class="auth-link" href="{%url 'login' %}">Login</a></span>
-                    </div>
+                    {%endfor%}
+                {%endif%}
+            </div>
+            <h3 class="text-center">Register</h3>
+            <form action="{%url 'register'%}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label" for="registerFirstName">First Name</label>
+                    <input class="form-control" name="first-name" id="registerFirstName" placeholder="Enter your first name" required type="text">
                 </div>
+                <div class="mb-3">
+                    <label class="form-label" for="registerLastName">Last Name</label>
+                    <input class="form-control" name="last-name" id="registerLastName" placeholder="Enter your last name" required type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="registerUsername">Username</label>
+                    <input class="form-control" name="username" id="registerUsername" placeholder="Enter your username" required type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="registerEmail">Email address</label>
+                    <input class="form-control" name="email" id="registerEmail" placeholder="Enter your email" required type="email">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="registerPassword">Password</label>
+                    <input class="form-control" name="password" id="registerPassword" placeholder="Enter your password" required type="password">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="registerConfirmPassword">Confirm Password</label>
+                    <input class="form-control" name="confirmation-password" id="registerConfirmPassword" placeholder="Confirm your password"
+                            required type="password">
+                </div>
+                <button class="btn btn-primary w-100 submit-btn" type="submit">Register</button>
+            </form>
+            <div class="text-center mt-3">
+                <span class="auth-text">Already have an account? <a class="auth-link" href="{%url 'login' %}">Login</a></span>
             </div>
         </div>
     </div>

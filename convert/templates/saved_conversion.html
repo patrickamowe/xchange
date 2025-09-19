@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {%load static%}
-{%block title%}Saved Conversion{%endblock%}
+{%block title%} Saved Conversion - Xchange {%endblock%}
 {%block body%}
     <div class="container">
         <div class="m-2">
@@ -32,3 +32,6 @@
         <div class="text-center empty-text">Your wishlist is empty!</div>
     {%endif%}
 {%endblock%}
+{% block script %}
+    <script type="module" src="{% static 'script/saveConversion.js'%}"></script>
+{% endblock %}
