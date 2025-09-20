@@ -1,5 +1,5 @@
 // ui.js
-import { convertCurrency, addRecentConversion } from "./api.js";
+import { convertCurrency, addRecentConversion } from "./API.js";
 
 
 export function UIHandler() {
@@ -50,6 +50,7 @@ export function UIHandler() {
         const amount = document.getElementById("amount").value;
         const from = document.getElementById("fromCurrency").value;
         const to = document.getElementById("toCurrency").value;
+        const user = document.getElementById("convert-button").getAttribute("user");
 
         if (!amount || !from || !to) {
             alert("Please fill in all fields.");
@@ -64,8 +65,10 @@ export function UIHandler() {
                 document.getElementById("result").textContent =
                     `${amount} ${from} = ${data.conversion_result.toFixed(2)} ${to}`;
                 
-                // Save to recent conversion
-                await addRecentConversion(from, to);
+                // Save to recent conversion if user is authenticated
+                if (user === "True") {
+                    await addRecentConversion(from, to);
+                }
                 
             } else {
                 document.getElementById("result").textContent = "Conversion failed.";

@@ -1,5 +1,6 @@
 // Clickable currency rates
-import { convertCurrency } from "./api.js";
+import { convertCurrency, addRecentConversion } from "./API.js";
+
 
 export function popularConversionHandler() {
     const convertView = document.getElementById("convert-view");
@@ -9,6 +10,9 @@ export function popularConversionHandler() {
     const rateRows = document.querySelectorAll(".rate-row");
     const fromCurrencyInput = document.getElementById("fromCurrency");
     const toCurrencyInput = document.getElementById("toCurrency");
+    const addConversionIcon = document.getElementById("add-conversion");
+    const user = document.getElementById("convert-button").getAttribute("user");
+    
 
     rateRows.forEach((row) => {
         row.addEventListener("click", async () => {
@@ -35,6 +39,14 @@ export function popularConversionHandler() {
                 const data = await convertCurrency(amount, base, target);
                 if (data.result === "success") {
                     document.getElementById("result").textContent = `${amount} ${base} = ${data.conversion_result.toFixed(2)} ${target}`;
+
+                    // Show add conversion icon if user is authenticated
+                    // Add to recent conversions if user is authenticated
+                    if (user === "True") {
+                        addConversionIcon.classList.remove("hidden");
+                        await addRecentConversion(base, target);
+                    }
+
                 } else {
                     document.getElementById("result").textContent = "Conversion failed.";
                 }
@@ -42,9 +54,6 @@ export function popularConversionHandler() {
                 console.error("Error during conversion:", error);
                 document.getElementById("result").textContent = "Error during conversion.";
             }
-
-            //Make add conversion icon visible
-            document.getElementById("add-conversion").classList.remove("hidden");
         });
     });
 }

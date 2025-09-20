@@ -1,4 +1,4 @@
-import { addConversion, removeConversion } from "./api.js";
+import { addConversion, removeConversion } from "./API.js";
 
 export function conversionHandler() {
     // Add conversion button

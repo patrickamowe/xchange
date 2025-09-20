@@ -1,10 +1,14 @@
-import { clearRecentConversions } from "./api";
+import { clearRecentConversions } from "./API.js";
 
 
 export function recentConversionHandler() {
-        
-        // Clear button functionality
-        const clearBtn = document.getElementById("clear-recent");
+    
+    // Clear button functionality
+    const clearBtn = document.getElementById("clear-recent");
+    const listContainer = document.getElementById("recent-activity-list");
+    const isEmpty = listContainer.getAttribute("isEmpty");
+    
+    if (isEmpty === "False") {
         clearBtn.addEventListener("click", () => {
             clearRecentConversions();
             listContainer.innerHTML = "";
@@ -13,4 +17,7 @@ export function recentConversionHandler() {
             listItem.textContent = "No recent conversions.";
             listContainer.appendChild(listItem);
         });
+    }else {
+        return;
     }
+}

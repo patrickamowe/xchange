@@ -1,7 +1,4 @@
-// api.js
-const BACKEND_URL = "http://127.0.0.1:8000";
-const API_KEY = "7fe0597fce4c9eadaa610d6b";
-const FX_API_BASE = "https://v6.exchangerate-api.com/v6";
+import {BACKEND_URL, API_KEY, FX_API_BASE} from './constant.js';
 
 // Add conversion to saved conversions
 export async function addConversion(base, quote) {
@@ -38,3 +35,10 @@ export async function clearRecentConversions() {
     const response = await fetch(url);
     return response.json();
 }   
+
+// Fetch the API key from the backend
+export async function getApiKey() {
+    const url = `${BACKEND_URL}/get_api_key/`;
+    const response = await fetch(url);
+    return response.json();
+}

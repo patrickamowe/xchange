@@ -20,6 +20,7 @@ urlpatterns = [
     path("remove_conversion/<str:base_code>/<str:quote_code>/", views.remove_conversion, name="remove_conversion"),
     path("add_recent_conversion/<str:base_code>/<str:quote_code>/", views.add_recent_conversion, name="add_recent_conversion"),
     path("clear_recent_conversions/", views.clear_recent_conversions, name="clear_recent_conversions"),
+    path("get_api_key/", views.get_api_key, name="get_api_key"),
 
 ]
 

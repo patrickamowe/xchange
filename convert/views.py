@@ -183,3 +183,7 @@ def add_recent_conversion(request, base_code, quote_code):
         response_data = {'status':'fail', 'message':str(e)}
         return JsonResponse(response_data, status=500)
 
+
+def get_api_key(request):
+    response_data = {'api_key': config('EXCHANGE_API')}
+    return JsonResponse(response_data)
